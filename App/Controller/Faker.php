@@ -32,9 +32,9 @@ class Faker
                 [$value[0], $value[1], $value[2], $value[3], $value[4]]);
         }
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             for ($j = 0; $j < 1; $j++) {
-                $this->file[$i][0] = rand(20, 29);
+                $this->file[$i][0] = rand(1, 10);
                 $this->file[$i][1] = "/domains/vp_02020202/www/image/" . $faker->word . "/" . $faker->word . "/" . $faker->word . ".jpg";
             }
         }

@@ -19,11 +19,11 @@ class User
         $this->data = new MenuModel();
         $this->data->login = $_SESSION['logged_user'];
         $this->data->image = $this->data->selectImage();
-        $this->data->avatar = str_replace('/domains/vp_02020202/www', "", $this->data->image[0]['image']);
+        $this->data->avatar = str_replace('/domains/vp_02020202/www', "", $this->data->image[0]->image);
         $this->data->dateDescription = $this->data->selectDescription();
-        $this->data->birth = $this->data->dateDescription[0]['birth'];
-        $this->data->description = $this->data->dateDescription[0]['description'];
-        if (isset($_POST['exit'])){
+        $this->data->birth = $this->data->dateDescription[0]->birth;
+        $this->data->description = $this->data->dateDescription[0]->description;
+        if (isset($_POST['exit'])) {
             unset($_SESSION['logged_user']);
             header("Location:/index/index");
         }
@@ -52,18 +52,18 @@ class User
     {
         if (isset($_POST['upload'])) {
             $this->data = new MenuModel();
-            $uploaddir = '/domains/vp_02020202/www/image';
+            $uploaddir = 'image';
             $uploadfile = $uploaddir . "/" . $_SESSION['logged_user'] . "/" . basename($_FILES['image']['name']);
             $getMime = explode('.', $_FILES['image']['name']);
             $mime = strtolower(end($getMime));
-            $types = array('jpg', 'png', 'gif', 'bmp', 'jpeg');
+            $types = ['jpg', 'png', 'gif', 'bmp', 'jpeg'];
             if (!in_array($mime, $types))
                 $this->data->errors = 'Недопустимый тип файла.';
             if ($_FILES['image']['name'] == '') {
                 $this->data->errors = "Вы не выбрали файл";
             }
             if (empty($this->data->errors)) {
-                @mkdir("/domains/vp_02020202/www/image/" . $_SESSION['logged_user'], 0700);
+                @mkdir("image/" . $_SESSION['logged_user'], 0700);
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
                     $this->data->successful = "Файл корректен и был успешно загружен.";
                     $this->data->image = $uploadfile;
@@ -82,15 +82,15 @@ class User
         if (isset($_POST['submitUpload'])) {
             $this->data = new MenuModel();
 
-            $uploaddir = '/domains/vp_02020202/www/image';
+            $uploaddir = 'image';
             $uploadfile = $uploaddir . "/" . $_SESSION['logged_user'] . "/upload/" . basename($_FILES['image']['name']);
             $this->data->login = $_SESSION['logged_user'];
             $this->id = $this->data->selectId();
-            $this->data->id = $this->id[0]['id'];
+            $this->data->id = $this->id[0]->id;
             $this->link = $this->data->selectLink();
             $getMime = explode('.', $_FILES['image']['name']);
             $mime = strtolower(end($getMime));
-            $types = array('jpg', 'png', 'gif', 'bmp', 'jpeg');
+            $types = ['jpg', 'png', 'gif', 'bmp', 'jpeg'];
             if (!in_array($mime, $types))
                 $this->data->errors = 'Недопустимый тип файла.';
             if ($_FILES['image']['name'] == '') {
@@ -104,7 +104,7 @@ class User
                 }
             }
             if (empty($this->data->errors)) {
-                @mkdir("/domains/vp_02020202/www/image/" . $_SESSION['logged_user'] . "/upload", 0700);
+                @mkdir("image/" . $_SESSION['logged_user'] . "/upload", 0700);
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
                     $this->data->successful = "Файл корректен и был успешно загружен.";
                     $this->data->file = $uploadfile;

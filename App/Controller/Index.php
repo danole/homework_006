@@ -14,6 +14,7 @@ class Index
 
     public function indexAction()
     {
+        echo "<h1>Приветствую</h1>";
     }
 
     public function registrationAction()
@@ -60,10 +61,10 @@ class Index
             }
             if (empty($this->data->errors)) {
                 $this->password = $this->data->selectPasswordForRegistration();
-                if (sha1($this->data->loginPassword) == $this->password[0]["password"]) {
+                if (sha1($this->data->loginPassword) == $this->password["0"]->password) {
                     $this->data->successful = "Успешно зашел";
                     session_start();
-                    $_SESSION['logged_user'] = $this->data->name[0]['name'];
+                    $_SESSION['logged_user'] = $this->data->name[0]->name;
                     header("Location: ../user/user");
                 } else {
                     $this->data->errors = "Пароли не совпадают";

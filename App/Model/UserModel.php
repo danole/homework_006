@@ -2,10 +2,15 @@
 
 namespace App\Model;
 
-use Base\DB;
+use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Database\Eloquent\Model;
 
-class UserModel
+include "../App/config/database.php";
+
+
+class UserModel extends Model
 {
+
     public $db;
     public $name;
     public $password;
@@ -14,27 +19,40 @@ class UserModel
     public $errors = [];
     public $successful;
 
+    public function uploads()
+    {
+        return $this->hasMany('uploads', 'user_id', 'id');
+    }
+
+
     public function saveData()
     {
-        $this->db = new DB;
-        $this->db->insert("INSERT INTO `users` (`name`, `password`) VALUES (?,?)", [$this->name, $this->password]);
+        $users = Capsule::table('users')
+            ->insert(
+                ['name' => $this->name, 'password' => $this->password]
+            );
     }
 
     public function selectUser()
     {
-        $this->db = new DB;
-        return $this->db->select("SELECT * FROM `users` WHERE `name`=?", [$this->loginName]);
+        return $users = Capsule::table('users')
+            ->select('name')
+            ->where("name", "=", $this->loginName)
+            ->get();
     }
 
     public function selectUserForRegistration()
     {
-        $this->db = new DB;
-        return $this->db->select("SELECT * FROM `users` WHERE `name`=?", [$this->name]);
+        return $users = Capsule::table('users')
+            ->where("name", "=", $this->name)
+            ->get();
     }
 
     public function selectPasswordForRegistration()
     {
-        $this->db = new DB;
-        return $this->db->select("SELECT `password` FROM `users` WHERE `name`=?", [$this->loginName]);
+        return $users = Capsule::table('users')
+            ->select('password')
+            ->where("name", "=", $this->loginName)
+            ->get();
     }
 }

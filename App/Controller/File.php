@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Model\FileModel;
+use App\Model\User;
 
 
 class File
@@ -14,7 +15,9 @@ class File
 
     public function fileAction()
     {
+
         $this->data = new FileModel();
+        $this->data->users = $this->data->selectUsers();
         if (isset($_POST['ssort'])) {
             $this->data->users = $this->data->ssortUsers();
         } elseif (isset($_POST['msort'])) {
@@ -23,17 +26,19 @@ class File
             $this->data->users = $this->data->selectUsers();
         }
         foreach ($this->data->users as $value) {
-            $age = $value["birth"];
-            $id = $value['id'];
+            $user = [];
+            $age = $value->birth;
             $age = date("Y") - mb_strimwidth($age, 0, 4);
-            array_push($value, $age);
             if ($age >= 18) {
                 $adult = "Совершеннолетний";
             } else {
                 $adult = "Несовершеннолетний";
             }
-            array_push($value, $adult);
-            array_push($this->data->information, $value);
+            array_push($user, $value->id);
+            array_push($user, $value->name);
+            array_push($user, $age);
+            array_push($user, $adult);
+            array_push($this->data->information, $user);
         }
         $this->data->id = $_POST['idFile'];
         if (isset($_POST['submit'])) {

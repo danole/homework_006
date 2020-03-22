@@ -3,7 +3,9 @@
 
 namespace App\Model;
 
-use Base\DB;
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+include "../App/config/database.php";
 
 class MenuModel
 {
@@ -22,43 +24,57 @@ class MenuModel
 
     public function updateImage()
     {
-        $this->db = new DB;
-        $this->db->update("UPDATE `users` SET `image` = ? WHERE `users`.`name` = ?;", [$this->image, $this->login]);
+        $users = Capsule::table('users')
+            ->where('name', "=", $this->login)
+            ->update(['image' => $this->image]);
     }
 
     public function selectImage()
     {
-        $this->db = new DB;
-        return $this->db->select("SELECT `image` FROM `users` WHERE `name`=?", [$this->login]);
+        return $users = Capsule::table('users')
+            ->select('image')
+            ->where("name", "=", $this->login)
+            ->get();
     }
 
     public function updateDescription()
     {
-        $this->db = new DB;
-        $this->db->update("UPDATE `users` SET `birth` = ?, `description` = ? WHERE `users`.`name` = ?;", [$this->birth, $this->description, $this->login]);
+        $users = Capsule::table('users')
+            ->where('name', "=", $this->login)
+            ->update(
+                ['birth' => $this->birth, 'description' => $this->description]
+            );
     }
 
     public function selectDescription()
     {
-        $this->db = new DB;
-        return $this->db->select("SELECT `birth`, `description` FROM `users` WHERE `name`=?", [$this->login]);
+        return $users = Capsule::table('users')
+            ->select('birth', 'description')
+            ->where("name", "=", $this->login)
+            ->get();
     }
 
     public function uploadImage()
     {
-        $this->db = new DB;
-        $this->db->insert("INSERT INTO `uploads` (`user_id`, `file`) VALUES (?,?)", [$this->id, $this->file]);
+        $users = Capsule::table('uploads')
+            ->insert(
+                ['user_id' => $this->id, 'file' => $this->file]
+            );
     }
 
     public function selectId()
     {
-        $this->db = new DB;
-        return $this->db->select("SELECT id FROM `users` WHERE `name`=?", [$this->login]);
+        return $users = Capsule::table('users')
+            ->select('id')
+            ->where("name", "=", $this->login)
+            ->get();
     }
 
     public function selectLink()
     {
-        $this->db = new DB;
-        return $this->db->select("SELECT `file` FROM `uploads` WHERE `user_id`=?", [$this->id]);
+        return $users = Capsule::table('uploads')
+            ->select('file')
+            ->where("user_id", "=", $this->id)
+            ->get();
     }
 }

@@ -9,7 +9,7 @@
 <?php
 if (isset($_POST['submit'])) {
     foreach ($object->data->upload as $value) {
-        echo $value['file'] . '<br>';
+        echo $value->file . '<br>';
     }
 
     echo '<br><button onclick="history.back();">Назад</button>';
@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
     <input type='hidden' name='idFile' value='%s'>
     <input type='submit' name='submit' value='Получить список файлов загруженных пользователем'>
     </form>",
-            $value['name'], $value['id'], $value['0'], $value['1'], $value['id']);
+            $value["1"], $value["0"], $value['2'], $value['3'], $value['0']);
     }
 }
 ?>
