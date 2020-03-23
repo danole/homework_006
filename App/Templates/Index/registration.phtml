@@ -3,6 +3,8 @@
     <input type="text" name="name" placeholder="Имя"><br>
     <p>Введите пароль:</p>
     <input type="password" name="password" placeholder="Пароль"><br>
+    <p>Введите email:</p>
+    <input type="email" name="email" placeholder="email"><br>
     <?php
     if (!empty($object->data->errors)) {
         echo "<br>" . $object->data->errors . "<br>";

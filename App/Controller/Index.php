@@ -10,6 +10,7 @@ class Index
     public $data; //Чтобы передать данные в шаблон,записывать обьект UserModel в эту переменную
     public $login;
     public $name;
+    public $email;
     public $password;
 
     public function indexAction()
@@ -22,6 +23,7 @@ class Index
         $this->data = new UserModel();
         $name = htmlspecialchars(trim($_POST['name']));
         $pass = htmlspecialchars(trim($_POST['password']));
+        $email = htmlspecialchars(trim($_POST['email']));
         $password = sha1($pass);
         if (isset($_POST['submit'])) {
             if (strlen($pass) < 4) {
@@ -32,10 +34,14 @@ class Index
             }
             if (empty($this->data->errors)) {
                 $this->data->name = $name;
+                $this->data->email = $email;
                 $this->name = $this->data->selectUserForRegistration();
+                $this->email = $this->data->selectEmailForRegistration();
                 if (!empty($this->name)) {
                     $this->data->errors = "Пользователь с именем " . $this->data->name . " уже существует";
-                } else {
+                }elseif (!empty($this->email)){
+                    $this->data->errors = "Пользователь с email " . $this->data->email . " уже существует";
+                }else {
                     $this->data->password = $password;
                     $this->data->saveData();
                     $this->data->successful = "Регистрация прошла успешно <a href='login'>Войти</a>";

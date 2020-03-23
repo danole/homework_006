@@ -6,9 +6,6 @@ namespace App\Model;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Eloquent\Model;
 
-include "../App/config/database.php";
-
-
 class FileModel extends Model
 {
     public $db;

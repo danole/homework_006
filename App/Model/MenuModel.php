@@ -4,8 +4,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
-
-include "../App/config/database.php";
+use Illuminate\Support\Facades\Config;
 
 class MenuModel
 {
