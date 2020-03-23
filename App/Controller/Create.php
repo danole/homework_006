@@ -31,6 +31,23 @@ class Create
             $table->timestamps();
         });
 
+        Capsule::schema()->dropIfExists("orders");
 
+        Capsule::schema()->create('orders', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('title');
+            $table->integer('price');
+            $table->string('image');
+            $table->string('description');
+            $table->timestamps();
+        });
+        Capsule::schema()->dropIfExists("category");
+
+        Capsule::schema()->create('category', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('title');
+            $table->string('description');
+            $table->timestamps();
+        });
     }
 }

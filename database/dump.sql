@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Мар 18 2020 г., 13:48
+-- Время создания: Мар 23 2020 г., 12:05
 -- Версия сервера: 5.6.43
 -- Версия PHP: 7.3.9
 
@@ -25,81 +25,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `uploads`
---
-
-CREATE TABLE `uploads` (
-  `user_id` int(11) NOT NULL,
-  `file` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `uploads`
---
-
-INSERT INTO `uploads` (`user_id`, `file`) VALUES
-(0, '/domains/vp_02020202/www/image/natasha/upload/2b27ac38b43b17a8c5eacfc443ce3384_400x400.jpeg'),
-(0, '/domains/vp_02020202/www/image/natasha/upload/2b27ac38b43b17a8c5eacfc443ce3384_400x400.jpeg'),
-(16, '/domains/vp_02020202/www/image/natasha/upload/1.jpeg'),
-(16, '/domains/vp_02020202/www/image/natasha/upload/2b27ac38b43b17a8c5eacfc443ce3384_400x400.jpeg'),
-(16, '/domains/vp_02020202/www/image/natasha/upload/1.jpeg'),
-(16, '/domains/vp_02020202/www/image/natasha/upload/1.jpeg'),
-(16, '/domains/vp_02020202/www/image/natasha/upload/1.jpeg'),
-(16, '/domains/vp_02020202/www/image/natasha/upload/1.jpeg'),
-(0, ']WL~QK^>?)HbQ#8,\"'),
-(0, '54OL/zwvnP(g'),
-(0, 'Te:!Efa/$%)XOgdF?'),
-(0, 'g?7G`O\"l?MLvO&(c'),
-(0, 'CSD0}*'),
-(0, 'Q/*9u8Kh'),
-(0, 'Be_`l^?3qxnXf1yX1]1'),
-(0, '03SX7VRi1~vgq0h'),
-(0, 'Tlf?v%g4'),
-(0, 'S@n=RWR&,I-'),
-(24, '/domains/vp_02020202/www/image/quia/quas/quia.jpg'),
-(27, '/domains/vp_02020202/www/image/aut/at/nihil.jpg'),
-(26, '/domains/vp_02020202/www/image/aperiam/quibusdam/odit.jpg'),
-(22, '/domains/vp_02020202/www/image/eum/voluptates/quibusdam.jpg'),
-(25, '/domains/vp_02020202/www/image/excepturi/rerum/rem.jpg'),
-(22, '/domains/vp_02020202/www/image/reiciendis/ut/earum.jpg'),
-(22, '/domains/vp_02020202/www/image/neque/in/aut.jpg'),
-(29, '/domains/vp_02020202/www/image/unde/aut/architecto.jpg'),
-(29, '/domains/vp_02020202/www/image/dicta/animi/molestias.jpg'),
-(24, '/domains/vp_02020202/www/image/excepturi/repellendus/suscipit.jpg');
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `users`
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `birth` date NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `password`, `birth`, `description`, `image`) VALUES
-(15, 'carl', 'bb3acf149db4936fbaca693a61d56be89205d997', '0000-00-00', '', '/image/carl/d986a9476263f1e9399e2f0f6020f6da.jpg'),
-(16, 'natasha', 'bb3acf149db4936fbaca693a61d56be89205d997', '1990-09-11', 'kfslfklsfslk', '/domains/vp_02020202/www/image/natasha/2b27ac38b43b17a8c5eacfc443ce3384_400x400.jpeg'),
-(19, 'asdasd', 'adads', '2020-03-09', 'adasd', 'asdasdasd'),
-(20, 'Тит', 'bI#/B0\'3?`FwBKU#nHB<', '1973-09-16', 'Qui omnis eius eum ut aut non. Unde sint veritatis nisi distinctio at odit. Reiciendis ut tempora ipsam harum praesentium nam quisquam.', 'http://www.krykova.ru/dolores-occaecati-reiciendis-et-voluptatem-molestiae-ut-alias'),
-(21, 'Василиса', '4[Dv`25\"kb-N@?;o', '1986-03-23', 'Reiciendis aut commodi magnam accusantium similique sed perspiciatis. Eum et in nulla delectus pariatur sed atque. Minus odit ut nam ut.', 'http://volkov.ru/'),
-(22, 'Мария', '<T3PbtKsa', '1995-12-03', 'Deleniti et natus est labore explicabo laboriosam aperiam. Neque voluptate in aut recusandae fugiat non. Ea fugiat itaque fugiat explicabo ut aliquam dolores. Rerum dolores sed non.', 'http://kononov.ru/'),
-(23, 'Евгения', 'Fm?&QV]a+U?', '1979-10-12', 'Culpa doloremque architecto et ab sit. At autem minus recusandae velit quos. Rerum ut pariatur laboriosam dignissimos veritatis.', 'https://www.zukova.ru/quo-expedita-quos-et-earum-molestiae-ea-ea-porro'),
-(24, 'Клара', '2gW\\L\\f!C;M\"jWf.Xxf', '2015-08-04', 'A rerum laudantium esse quis expedita. Perferendis facilis consequatur modi cum distinctio. Nesciunt dolorum praesentium qui iusto.', 'http://www.stepanov.ru/et-et-accusantium-deserunt-eligendi-voluptatibus-et-aliquam-quam'),
-(25, 'Аркадий', 'NF9z&Y5~S\\,', '2014-03-22', 'Doloremque commodi et harum. Facere quasi modi tenetur enim deserunt eaque corporis. Sed in expedita aut sint sint sunt eos.', 'http://turov.ru/labore-maxime-quae-qui-quia-nostrum-cupiditate'),
-(26, 'Алиса', ')T,6(?R_Aa%.', '2004-04-09', 'Quia natus earum blanditiis consequuntur ea. Omnis magni non eos dolor vel qui. Quisquam possimus ducimus et quod quia voluptatibus.', 'http://sukanov.com/'),
-(27, 'Влад', 'v|vJ@>p|', '2005-09-27', 'Dolore molestias ut aperiam quia. Pariatur at qui nihil maxime non libero.', 'https://www.osipova.ru/delectus-aut-dolorum-quia-recusandae-omnis-quasi-deleniti'),
-(28, 'Ефим', '%]\\YKG&1^<em', '1988-05-27', 'Quia enim ut et occaecati. Ex odio eos vel saepe eos qui. Cupiditate aperiam odio fugiat.', 'https://www.kabanova.com/voluptatum-commodi-quae-nulla'),
-(29, 'София', 't8DH>``I', '1981-02-08', 'Aut quos sit id soluta sapiente. Blanditiis et soluta in placeat beatae dolorem dolorem. Cum sint quam praesentium expedita unde. Modi facere ab tempora tenetur ut cumque quia.', 'http://www.nekrasova.net/explicabo-rerum-accusantium-qui-excepturi-praesentium.html');
+INSERT INTO `users` (`id`, `name`, `password`, `email`, `birth`, `description`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'Константин', 'n{|){\\``', 'gbobyleva@petukova.net', '1999-08-23', 'Dolorem autem aspernatur ipsum excepturi. Sint repellat itaque et harum laudantium praesentium culpa at. Rem eveniet culpa voluptatem.', 'http://ykusev.net/perspiciatis-nemo-officiis-assumenda-expedita-velit-voluptas.html', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 'Викентий', 'viGi<0v%\\3v/`bk', 'ruslan.petrov@abramov.ru', '2000-05-31', 'Est ut ut quo nemo saepe blanditiis. Iure necessitatibus odit quae. Velit et eligendi eveniet iste perferendis nostrum. Perspiciatis aliquid voluptatem cupiditate odit.', 'https://ovcinnikova.ru/ipsam-tenetur-dolorem-nam-quo.html', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 'Софья', '>{<zRiC5]4>Bw8', 'yroslava54@ivanova.ru', '1990-06-28', 'Explicabo doloribus voluptatem sit dolorem amet aut. Aut et repellendus nostrum. Dolorem beatae quo animi.', 'https://lytkina.ru/et-consequatur-occaecati-aliquam.html', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 'Август', 'ex^#]J1', 'izykova@rusakov.ru', '2008-12-14', 'Laudantium architecto dolore vel doloribus id laudantium. Dolor quas sit beatae atque quia quos laboriosam id. Autem ipsum ut quia temporibus aut aut beatae enim.', 'http://kolobova.com/delectus-dolores-cumque-accusantium-est-nihil-et-incidunt.html', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 'Елизавета', 'z4-/0U:7!{ku(`8', 'snoskov@doronin.com', '1987-03-20', 'Qui qui ut corrupti et. Saepe voluptatem quis repellat aut deleniti nulla. Provident sit aut non. Odio eius quisquam perferendis minima quasi dolores.', 'http://www.ignatev.net/accusamus-aliquam-placeat-voluptatem-libero-quis', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 'Лада', '!Jt,S;U4L', 'irodionov@gureva.com', '1985-07-17', 'Sed odit dolore ea rerum quisquam enim. Pariatur natus qui consequuntur quae voluptas. Doloremque aut asperiores culpa laboriosam molestiae sunt minus ut.', 'http://simonov.net/', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(7, 'Никита', 'E`&THQI', 'zakarova.nataly@rambler.ru', '2012-08-19', 'Maxime id quis sint qui. Quidem perspiciatis quia ut harum iure est. Possimus animi aut maiores qui nesciunt esse.', 'http://www.tvetkova.ru/suscipit-aut-praesentium-eos-ratione-qui-facere', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(8, 'София', 'kBuzEA>fJ>=Yp', 'viktor.kalinina@rambler.ru', '1993-09-12', 'Non et incidunt aut minima. A odit ipsum et laudantium ut et optio. Expedita consequatur error dicta quos dolor rem in. Molestiae molestiae natus qui qui officiis non sed.', 'http://www.pavlov.ru/sed-autem-adipisci-et-eum', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(9, 'Инесса', 'ES3v@F|HOK', 'miroslav86@ignatov.com', '1978-02-11', 'Nihil autem iusto saepe quo fuga ea. Amet quia totam et eos. Cupiditate qui vel et eveniet.', 'http://prokorov.ru/', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10, 'Феликс', '\'I%}r27+UYTl{v?U+JVN', 'gulyeva.anzelika@serbakova.org', '2016-08-02', 'Exercitationem et perferendis unde molestiae nihil suscipit et. Dolorum possimus dolore dolorem. Officia debitis non nihil ut.', 'http://antonova.ru/amet-nesciunt-amet-nesciunt-expedita-aut-similique-voluptas.html', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(11, 'boot', 'bb3acf149db4936fbaca693a61d56be89205d997', 'boot@mail.ru', '0000-00-00', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 --
 -- Индексы сохранённых таблиц
@@ -109,7 +65,8 @@ INSERT INTO `users` (`id`, `name`, `password`, `birth`, `description`, `image`) 
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -119,7 +76,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
